@@ -4,7 +4,7 @@ cntv视频下载
 ##1. 项目结构说明
 - lib/
 
-	解析url获取视频链接
+	解析url获取视频链接, 合并分段视频
 - util
 
 	工具集
@@ -40,9 +40,6 @@ cntv视频下载
       pyenv activate env_cntv-video-downloader_2.7.6             // 切换到项目对应的虚拟环境
       pip install -r requirements.txt                 			// 安装依赖库
       python main.py                                  			// 运行项目
-
-##3. TODO
-- 分段视频合并
 
 ##3. 如何贡献
 - fork

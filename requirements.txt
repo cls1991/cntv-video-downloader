@@ -1,2 +1,2 @@
-beautifulsoup4==4.3.2
+wget==3.2
 pycurl==7.19.5.1
