@@ -1,5 +1,6 @@
 # coding: utf8
 
+import os
 import re
 import pycurl
 from StringIO import StringIO
@@ -59,3 +60,27 @@ def get_html(url, user_agent, refer_url):
     curl.close()
 
     return body
+
+
+def save_to_file(d_links, file_name):
+    """
+    将图片链接存入文件
+    :param d_links: 图片真实下载链接
+    :param :file_name: 文件名
+    :return
+    """
+    try:
+        if not d_links:
+            return
+        base_dir = 'out/'
+        if not os.path.exists(base_dir):
+            os.mkdir(base_dir)
+        file_object = open(base_dir + file_name, 'w')
+
+        for item in d_links:
+            file_object.write(item)
+            file_object.write('\n')
+        file_object.close()
+    except IOError:
+        print('file not exist!')
+        exit()
