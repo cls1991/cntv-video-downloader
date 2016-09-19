@@ -5,10 +5,10 @@ cntv视频下载
 - lib/
 
 	解析url获取视频链接, 合并分段视频
-- util
+- util/
 
 	工具集
-- share
+- share/
 
 	共享文件
 - out/

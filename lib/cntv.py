@@ -106,7 +106,7 @@ def download_videos(title, dlinks=None, link_file=None, is_merge=False, is_remai
     print('*' * 40)
     print('开始下载视频')
     print(datetime.datetime.now())
-    pool = mul.Pool(4)
+    pool = mul.Pool(const.PROCESS_MAX_NUM)
     pool.map(wget_video, video_links)
     print('*' * 40)
     print(datetime.datetime.now())

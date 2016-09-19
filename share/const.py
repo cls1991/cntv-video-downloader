@@ -7,3 +7,5 @@ API_URL = 'http://vdn.apps.cntv.cn/api/getHttpVideoInfo.do'
 BASE_VIDEO_DIR = 'out'
 TMP_DIR = 'tmp'
 TMP_FILE = 'tmp_file_list.txt'
+# 进程数(参考cpu核数)
+PROCESS_MAX_NUM = 4

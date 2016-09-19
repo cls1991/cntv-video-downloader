@@ -5,7 +5,7 @@ import os
 project = os.path.split(os.path.realpath(__file__))[0]
 os.chdir(project)
 
-from lib.cntv import get_download_link, download_videos
+from lib.cntv import get_download_link
 
 
 if __name__ == '__main__':
