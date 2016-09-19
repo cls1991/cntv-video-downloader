@@ -8,16 +8,15 @@ import subprocess as sub
 from util.common import *
 from share import const
 
-temp_file = 'file_list.txt'
 
-
-def get_download_link(url, quality_type=2, get_dlink_only=True, is_merge=False):
+def get_download_link(url, quality_type=2, get_dlink_only=True, is_merge=False, is_remain=True):
     """
     获取视频链接
     :param url: 源地址
     :param quality_type:分辨率类型(1: lowChapters 2: chapters 3: chapters2 4: chapters3 5: chapters4)
     :param get_dlink_only: 是否仅获取链接
     :param is_merge: 是否合并分段视频
+    :param is_remain: 是否保留临时目录
     :return:
     """
     pid = get_pid_by_url(url)
@@ -50,12 +49,12 @@ def get_download_link(url, quality_type=2, get_dlink_only=True, is_merge=False):
         return
 
     save_to_file(result, title + '.txt', const.BASE_VIDEO_DIR)
-    save_to_file(temp_list, temp_file, const.BASE_VIDEO_DIR)
+    save_to_file(temp_list, const.TMP_FILE, const.TMP_DIR)
 
     if not get_dlink_only:
         ext = r1(r'\.([^.]+)$', result[0])
         assert ext in ('flv', 'mp4')
-        download_videos(title + '.%s' % ext, dlinks=result, is_merge=is_merge)
+        download_videos(title + '.%s' % ext, dlinks=result, is_merge=is_merge, is_remain=is_remain)
 
 
 def wget_video(link_url):
@@ -67,7 +66,7 @@ def wget_video(link_url):
     video_name = link_url.split('/')[-1]
     print('*' * 40)
     print('正在下载%s' % video_name)
-    cmd = '/usr/bin/wget --no-clobber -O ./%s/%s %s' % (const.BASE_VIDEO_DIR, video_name, link_url)
+    cmd = '/usr/bin/wget --no-clobber -O ./%s/%s %s' % (const.TMP_DIR, video_name, link_url)
     print('wget cmd: %s' % cmd)
     sub.Popen(cmd, shell=True, stdout=sub.PIPE).stdout.read()
 
@@ -79,18 +78,19 @@ def merge_video(output_file):
     :return:
     """
     cmd = '/usr/bin/ffmpeg -f concat -i ./%s/%s -c copy ./%s/"%s"' % (
-        const.BASE_VIDEO_DIR, temp_file, const.BASE_VIDEO_DIR, output_file)
+        const.TMP_DIR, const.TMP_FILE, const.BASE_VIDEO_DIR, output_file)
     print('ffmpeg cmd: %s' % cmd)
     sub.Popen(cmd, shell=True, stdout=sub.PIPE).stdout.read()
 
 
-def download_videos(title, dlinks=None, link_file=None, is_merge=False):
+def download_videos(title, dlinks=None, link_file=None, is_merge=False, is_remain=True):
     """
     获取所有视频
     :param title:
     :param dlinks:
     :param link_file:
     :param is_merge:
+    :param is_remain:
     :return:
     """
     video_links = list()
@@ -118,6 +118,9 @@ def download_videos(title, dlinks=None, link_file=None, is_merge=False):
         merge_video(title)
         print('*' * 40)
         print('视频合并完成')
+        # 删除分段视频
+        if not is_remain:
+            remove_dir(const.TMP_DIR)
 
 
 def get_pid_by_url(url):

@@ -3,6 +3,7 @@
 import os
 import re
 import pycurl
+import shutil
 from StringIO import StringIO
 
 
@@ -64,10 +65,10 @@ def get_html(url, user_agent, refer_url):
 
 def save_to_file(d_links, file_name, base_dir):
     """
-    将图片链接存入文件
-    :param d_links: 图片真实下载链接
-    :param file_name: 文件名
-    :param base_dir: 存储路径
+    存储下载链接
+    :param d_links:
+    :param file_name:
+    :param base_dir:
     :return
     """
     try:
@@ -75,7 +76,7 @@ def save_to_file(d_links, file_name, base_dir):
             return
         if not os.path.exists(base_dir):
             os.mkdir(base_dir)
-        file_object = open(base_dir + file_name, 'w')
+        file_object = open('./%s/%s' % (base_dir, file_name), 'w')
 
         for item in d_links:
             file_object.write(item)
@@ -83,4 +84,16 @@ def save_to_file(d_links, file_name, base_dir):
         file_object.close()
     except IOError:
         print('file not exist!')
-        exit()
+
+
+def remove_dir(dir_name):
+    """
+    删除目录树
+    :param dir_name:
+    :return:
+    """
+    try:
+        if os.path.exists(dir_name):
+            shutil.rmtree(dir_name)
+    except IOError:
+        print('dir not exist!')

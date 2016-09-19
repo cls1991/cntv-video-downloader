@@ -93,3 +93,4 @@ ENV/
 # generate files
 out/*.mp4
 out/*.flv
+tmp/
