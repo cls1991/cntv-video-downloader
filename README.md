@@ -1,7 +1,7 @@
 # cntv-video-downloader
 cntv视频下载
 
-##1. 项目结构说明
+## 1. 项目结构说明
 - lib/
 
 	解析url获取视频链接, 合并分段视频
@@ -21,8 +21,8 @@ cntv视频下载
 
 	python依赖库
 
-##2. 项目运行说明
-###1. 搭建python开发环境
+## 2. 项目运行说明
+### 1. 搭建python开发环境
 - 推荐安装pyenv和pyenv-virtualenv, 完全隔离不同项目的开发环境.
 - pyenv的安装, 请参考[https://github.com/yyuu/pyenv](https://github.com/yyuu/pyenv)
 - pyenv-virtualenv的安装, 请参考[https://github.com/yyuu/pyenv-virtualenv](https://github.com/yyuu/pyenv-virtualenv)
@@ -35,13 +35,13 @@ cntv视频下载
 
 	  pyenv install 2.7.6         // 指定版本号
 
-###2. 运行项目
+### 2. 运行项目
 
       pyenv activate env_cntv-video-downloader_2.7.6             // 切换到项目对应的虚拟环境
       pip install -r requirements.txt                 			// 安装依赖库
       python main.py                                  			// 运行项目
 
-##3. 如何贡献
+## 3. 如何贡献
 - fork
 - modify
 - pull request
