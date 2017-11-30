@@ -73,7 +73,7 @@ def wget_video(link_url):
 
 def merge_video(output_file):
     """
-    合并视频
+    ffmpeg合并视频
     :param output_file:
     :return:
     """
@@ -85,7 +85,7 @@ def merge_video(output_file):
 
 def download_videos(title, dlinks=None, link_file=None, is_merge=False, is_remain=True):
     """
-    获取所有视频
+    下载所有视频
     :param title:
     :param dlinks:
     :param link_file:
