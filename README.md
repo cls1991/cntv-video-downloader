@@ -24,8 +24,8 @@ cntv/cctv视频下载
 ## 2. 项目运行说明
 ### 1. 搭建python开发环境
 - 推荐安装pyenv和pyenv-virtualenv, 完全隔离不同项目的开发环境.
-- pyenv的安装, 请参考[https://github.com/yyuu/pyenv](https://github.com/yyuu/pyenv)
-- pyenv-virtualenv的安装, 请参考[https://github.com/yyuu/pyenv-virtualenv](https://github.com/yyuu/pyenv-virtualenv)
+- pyenv的安装, 请参考[https://github.com/pyenv/pyenv](https://github.com/pyenv/pyenv)
+- pyenv-virtualenv的安装, 请参考[https://github.com/pyenv/pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - 当然, 你也可以直接使用系统默认安装的python进行操作, 不过平时要养成良好的习惯, 推荐使用前面的方式操作.
 - 安装python虚拟环境
 
