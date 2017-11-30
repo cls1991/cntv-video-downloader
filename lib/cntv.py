@@ -64,8 +64,8 @@ def wget_video(link_url):
     :return:
     """
     video_name = link_url.split('/')[-1]
-    print('*' * 40)
-    print('正在下载%s' % video_name)
+    print(u'*' * 40)
+    print(u'正在下载%s' % video_name)
     cmd = '/usr/bin/wget --no-clobber -O ./%s/%s %s' % (const.TMP_DIR, video_name, link_url)
     print('wget cmd: %s' % cmd)
     sub.Popen(cmd, shell=True, stdout=sub.PIPE).stdout.read()
@@ -79,7 +79,7 @@ def merge_video(output_file):
     """
     cmd = '/usr/bin/ffmpeg -f concat -i ./%s/%s -c copy ./%s/"%s"' % (
         const.TMP_DIR, const.TMP_FILE, const.BASE_VIDEO_DIR, output_file)
-    print('ffmpeg cmd: %s' % cmd)
+    print(u'ffmpeg cmd: %s' % cmd)
     sub.Popen(cmd, shell=True, stdout=sub.PIPE).stdout.read()
 
 
@@ -103,21 +103,21 @@ def download_videos(title, dlinks=None, link_file=None, is_merge=False, is_remai
                     video_links.append(line)
     if not video_links:
         return
-    print('*' * 40)
-    print('开始下载视频')
+    print(u'*' * 40)
+    print(u'开始下载视频')
     print(datetime.datetime.now())
     pool = mul.Pool(const.PROCESS_MAX_NUM)
     pool.map(wget_video, video_links)
-    print('*' * 40)
+    print(u'*' * 40)
     print(datetime.datetime.now())
-    print('视频全部下载完成')
+    print(u'视频全部下载完成')
     if is_merge:
         # 合并分段视频
-        print('*' * 40)
-        print('开始合并分段视频')
+        print(u'*' * 40)
+        print(u'开始合并分段视频')
         merge_video(title)
-        print('*' * 40)
-        print('视频合并完成')
+        print(u'*' * 40)
+        print(u'视频合并完成')
         # 删除分段视频
         if not is_remain:
             remove_dir(const.TMP_DIR)
